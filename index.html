@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetösaray | Kanıtlar ve Gerçekler</title>
+    <title>Fetösaray | Gerçekler Arşivi</title>
     <style>
         :root {
-            --primary: #ff0000;
+            --danger: #ff0000;
             --bg: #000000;
-            --card-bg: #0a0a0a;
+            --card: #0d0d0d;
             --text: #ffffff;
-            --accent: #ff0000;
         }
 
         * {
@@ -23,143 +22,134 @@
         body {
             background: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        /* ÖNEMLİ YERLERİN ALTI ÇİZİLİ */
+        /* ÖNEMLİ VURGULAR */
         u {
             text-decoration: none;
-            border-bottom: 4px solid var(--primary);
+            border-bottom: 3px solid var(--danger);
             font-weight: bold;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: #000;
+            border-bottom: 4px solid var(--danger);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--danger);
         }
 
         /* HEADER */
         header {
-            background: #000;
-            border-bottom: 8px solid var(--primary);
-            padding: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.4);
+            padding: 40px;
+            text-align: center;
+            border-bottom: 2px solid #222;
         }
 
         .logo {
-            width: 130px;
-            height: 130px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 6px solid var(--primary);
+            border: 4px solid var(--danger);
+            margin-bottom: 15px;
         }
 
         .header-text h1 {
-            font-size: 55px;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: -2px;
+            font-size: 45px;
+            color: var(--danger);
         }
 
-        /* KANITLAR BUTONU (YENİ EKLEME) */
-        .external-link-btn {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 15px 30px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            font-size: 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: 0.3s;
-            border: 2px solid white;
+        /* SAYFA YAPISI */
+        .page {
+            display: none; /* Varsayılan olarak gizli */
+            padding: 40px 5%;
+            animation: fadeIn 0.5s ease;
         }
 
-        .external-link-btn:hover {
-            background: white;
-            color: var(--primary);
-            transform: scale(1.05);
+        .active-page {
+            display: block; /* Sadece aktif sayfa görünür */
         }
 
-        /* KANITLAR BÖLÜMÜ */
-        .evidence-section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 40px;
-            background: #0f0f0f;
-            border: 3px solid var(--primary);
-            text-align: center;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* KANITLAR SAYFASI ÖZEL TASARIM */
         .evidence-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
             margin-top: 30px;
         }
 
         .evidence-card {
-            background: #000;
-            border: 1px solid #444;
+            background: var(--card);
+            border: 2px solid #222;
             padding: 15px;
-            transition: 0.4s;
+            text-align: center;
+            transition: 0.3s;
         }
 
         .evidence-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+            border-color: var(--danger);
+            transform: scale(1.02);
         }
 
         .evidence-card img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border: 2px solid #222;
+            border-bottom: 3px solid var(--danger);
             margin-bottom: 15px;
-        }
-
-        .evidence-card h4 {
-            color: var(--primary);
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        /* ANA İÇERİK */
-        .main-content {
-            width: 85%;
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 50px;
-            background: var(--card-bg);
-            border-left: 10px solid var(--primary);
-        }
-
-        h2 {
-            font-size: 45px;
-            color: var(--primary);
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        p {
-            font-size: 22px;
-            margin-bottom: 25px;
+            background: #1a1a1a;
         }
 
         /* FOOTER */
         footer {
-            background: #000;
-            padding: 50px;
-            border-top: 5px solid var(--primary);
+            margin-top: 50px;
+            padding: 40px;
+            border-top: 5px solid var(--danger);
             text-align: center;
-            font-size: 26px;
-            color: var(--primary);
-            font-weight: 900;
+            color: var(--danger);
+            font-size: 20px;
         }
 
+        .content-box {
+            max-width: 900px;
+            margin: auto;
+            font-size: 22px;
+            background: var(--card);
+            padding: 40px;
+            border-left: 10px solid var(--danger);
+        }
     </style>
 </head>
 <body>
+
+<nav>
+    <a onclick="showPage('ana-sayfa')" id="link-ana-sayfa" class="active">ANA SAYFA</a>
+    <a onclick="showPage('kanitlar')" id="link-kanitlar">KANITLAR</a>
+</nav>
 
 <header>
     <img src="grs/fs.jpeg" class="logo">
@@ -169,56 +159,68 @@
     </div>
 </header>
 
-<section class="evidence-section">
-    <h2 style="color: white; background: var(--primary); display: inline-block; padding: 10px 30px;">
-        GÖRSEL KANITLAR VE ARŞİV
-    </h2>
-    
-    <div style="margin-top: 20px;">
-        <p>Daha fazla kanıt ve detaylı dökümanlar için aşağıdaki bağlantıyı takip edin:</p>
-        <a href="https://fs-rho-two.vercel.app/kanıtlar" class="external-link-btn" target="_blank">
-            TÜM KANITLARI GÖRÜNTÜLE
-        </a>
+<div id="ana-sayfa" class="page active-page">
+    <div class="content-box">
+        <h2 style="color: var(--danger); margin-bottom: 20px;">GERÇEKLER DOSYASI</h2>
+        <p>Türk futbolunda <u>suç ortaklığı</u> ve <u>ihanetin</u> merkezi olan bu yapının karanlık geçmişi burada toplanıyor.</p>
+        <br>
+        <p>• 1990'dan beri süregelen <u>örgüt üyeliği</u>...</p>
+        <p>• <u>3 Temmuz</u> kumpasıyla sağlanan haksız başarılar...</p>
+        <p>• Teröristleri koruyan <u>genel kurul</u> yapısı...</p>
+        <br>
+        <p>Detaylı dökümanlar için üst menüden <u>KANITLAR</u> bölümüne geçiş yapın.</p>
     </div>
+</div>
 
+<div id="kanitlar" class="page">
+    <h2 style="text-align: center; color: var(--danger); font-size: 40px;">SOMUT KANITLAR</h2>
     <div class="evidence-grid">
+        
         <div class="evidence-card">
-            <img src="grs/maydanoz.jpg" alt="Maydanoz Döner Kanıtı">
-            <h4><u>MAYDANOZ DÖNER</u> BAĞLANTISI</h4>
-            <p>Örgüt finansmanı ve ticari ortaklıkların belgesi.</p>
+            <img src="grs/maydanoz.jpg" alt="Maydanoz Döner">
+            <p><u>MAYDANOZ DÖNER</u></p>
+            <p style="font-size: 14px; margin-top: 10px;">Örgüt finansmanı ve ticari suç ortaklığı belgeleri.</p>
         </div>
 
         <div class="evidence-card">
-            <img src="grs/pensilvanya.jpg" alt="Ziyaret Kanıtı">
-            <h4>PENSİLVANYA <u>ZİYARETLERİ</u></h4>
-            <p>Diz çöken futbolcular ve bağlılık yeminleri.</p>
+            <img src="grs/pensilvanya.jpg" alt="Pensilvanya">
+            <p><u>PENSİLVANYA</u> KAYITLARI</p>
+            <p style="font-size: 14px; margin-top: 10px;">Futbolcuların terör liderine bağlılık anları.</p>
         </div>
 
         <div class="evidence-card">
-            <img src="grs/ihrac.jpg" alt="Genel Kurul Kanıtı">
-            <h4><u>İHRAÇ</u> REZALETİ</h4>
-            <p>Teröristlerin kulüpten atılmadığı o gece.</p>
+            <img src="grs/ihrac.jpg" alt="İhraç">
+            <p><u>İHRAÇ REZALETİ</u></p>
+            <p style="font-size: 14px; margin-top: 10px;">Genel kurulun teröristleri koruduğunun kanıtı.</p>
         </div>
+
     </div>
-</section>
-
-<section class="main-content">
-    <h2>GERÇEKLER</h2>
-    
-    <p>1. Galatasaray'ın elde ettiği her başarıda <u>terör örgütünün parmak izi</u> vardır.</p>
-    
-    <p>2. <u>Dualar ve himmetlerle</u> kazanılan kupalar, Türk futbol tarihinin en büyük lekesidir.</p>
-    
-    <p>3. <u>Hakan Şükür</u> ve ekibi, kulübü bir spor merkezi değil, bir <u>örgüt yuvası</u> haline getirmiştir.</p>
-    
-    <p>4. <u>Şike kumpası</u> ile rakipler tasfiye edilirken, Galatasaray bu karanlık süreçten <u>nemalanmıştır.</u></p>
-    
-    <p>5. Bugün dahi kulüp içerisindeki <u>kripto yapılanma</u> varlığını sürdürmektedir.</p>
-</section>
+</div>
 
 <footer>
-    UNUTMA, AFFETME! <u>İHANETİN</u> BELGESİ BURADADIR.
+    UNUTMA! <u>İHANET</u> ASLA UNUTULMAZ.
 </footer>
+
+<script>
+    function showPage(pageId) {
+        // Tüm sayfaları gizle
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active-page');
+        });
+        
+        // Seçilen sayfayı göster
+        document.getElementById(pageId).classList.add('active-page');
+
+        // Navigasyon linklerini güncelle
+        document.querySelectorAll('nav a').forEach(link => {
+            link.classList.remove('active');
+        });
+        document.getElementById('link-' + pageId).classList.add('active');
+
+        // Sayfayı en üste kaydır
+        window.scrollTo(0, 0);
+    }
+</script>
 
 </body>
 </html>
