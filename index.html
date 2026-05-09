@@ -12,10 +12,10 @@
             --text: #ffffff;
         }
 
-        * { margin: 0; p4adding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
         body { background: var(--bg); color: var(--text); scroll-behavior: smooth; }
 
-        u { text-decoration: none; border-bottom: 3px solid var(--primary); }
+        u { text-decoration: none; border-bottom: 3px solid var(--primary); font-weight: bold; }
 
         nav {
             background: #000; border-bottom: 4px solid var(--primary);
@@ -23,7 +23,7 @@
             position: sticky; top: 0; z-index: 1000;
         }
 
-        nav a { color: white; text-decoration: none; font-size: 18px; cursor: pointer; }
+        nav a { color: white; text-decoration: none; font-size: 18px; cursor: pointer; text-transform: uppercase; }
         nav a:hover, nav a.active { color: var(--primary); }
 
         .page { display: none; padding: 40px 5%; animation: fadeIn 0.4s ease; }
@@ -31,88 +31,113 @@
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* ARAMA ÇUBUĞU */
-        .search-container {
-            max-width: 600px; margin: 0 auto 40px auto; text-align: center;
+        /* İÇERİK BLOKLARI */
+        .content-box {
+            max-width: 1000px; margin: auto; padding: 40px;
+            background: var(--card); border-left: 10px solid var(--primary);
+            margin-bottom: 30px;
         }
 
+        .text-block { font-size: 22px; margin-bottom: 25px; line-height: 1.5; }
+        h2 { font-size: 45px; color: var(--primary); margin-bottom: 30px; text-transform: uppercase; }
+        h3 { font-size: 28px; color: var(--primary); margin: 30px 0 15px 0; text-transform: uppercase; }
+        p, li { font-size: 20px; line-height: 1.6; margin-bottom: 15px; }
+
+        /* KANITLAR VE ARAMA */
+        .search-container { max-width: 600px; margin: 0 auto 40px auto; text-align: center; }
         #evidenceSearch {
             width: 100%; padding: 15px; background: #111; border: 2px solid var(--primary);
-            color: white; font-size: 18px; border-radius: 5px; outline: none;
+            color: white; font-size: 18px; outline: none;
         }
 
-        /* KANIT KARTLARI */
-        .evidence-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;
-        }
-
+        .evidence-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         .evidence-card {
-            background: var(--card); border: 2px solid #222; padding: 15px;
-            text-align: center; transition: 0.3s;
+            background: var(--card); border: 2px solid #222; padding: 20px;
+            text-align: center; transition: 0.3s; display: flex; flex-direction: column;
         }
-
         .evidence-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .evidence-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--primary); margin-bottom: 15px; }
 
-        .evidence-card img { width: 100%; height: 200px; object-fit: cover; border-bottom: 3px solid var(--primary); }
+        .short-view { font-size: 14px; color: #aaa; margin-bottom: 15px; height: 50px; overflow: hidden; }
+        .detail-btn { background: var(--primary); color: white; padding: 10px; cursor: pointer; margin-top: auto; }
 
-        .detail-btn {
-            display: inline-block; margin-top: 15px; padding: 8px 20px;
-            background: var(--primary); color: white; text-decoration: none;
-            cursor: pointer; font-size: 14px;
-        }
-
-        /* MODAL (DETAY PANELİ) */
+        /* MODAL */
         .modal {
             display: none; position: fixed; z-index: 2000; left: 0; top: 0;
             width: 100%; height: 100%; background: rgba(0,0,0,0.95);
             overflow-y: auto; padding: 50px 20px;
         }
+        .modal-content { max-width: 800px; margin: auto; background: #111; border: 3px solid var(--primary); padding: 30px; position: relative; }
+        .close-modal { position: absolute; right: 20px; top: 10px; color: var(--primary); font-size: 40px; cursor: pointer; }
 
-        .modal-content {
-            max-width: 800px; margin: auto; background: #111;
-            border: 3px solid var(--primary); padding: 30px; position: relative;
-        }
-
-        .close-modal {
-            position: absolute; right: 20px; top: 10px; color: var(--primary);
-            font-size: 40px; cursor: pointer;
-        }
-
-        footer { padding: 40px; border-top: 5px solid var(--primary); text-align: center; color: var(--danger); font-size: 20px; margin-top: 50px;}
+        footer { padding: 40px; border-top: 5px solid var(--primary); text-align: center; color: var(--primary); font-size: 20px; }
     </style>
 </head>
 <body>
 
 <nav>
-    <a onclick="showPage('ana-sayfa')" id="nav-ana-sayfa">ANA SAYFA</a>
+    <a onclick="showPage('ana-sayfa')" id="nav-ana-sayfa" class="active">ANA SAYFA</a>
     <a onclick="showPage('kanitlar')" id="nav-kanitlar">KANITLAR</a>
 </nav>
 
 <div id="ana-sayfa" class="page active-page">
-    <div style="max-width: 900px; margin: auto; padding: 40px; background: #0d0d0d; border-left: 10px solid red;">
-        <h1 style="color:red; font-size: 40px; margin-bottom: 20px;">GERÇEKLER ARŞİVİ</h1>
-        <p style="font-size: 20px;">Bu platform, <u>ihanetin</u> ve <u>suç ortaklığının</u> belgelerini halka sunmak için kurulmuştur.</p>
+    <div class="content-box">
+        <h2>GERÇEKLER DOSYASI</h2>
+        
+        <div class="text-block">
+            Galatasaray'ın sportif başarıları birer illüzyondur. <u>Dualar ve himmetlerle</u> örülen bu yapı, Türk futbolunun <u>kara lekesidir.</u>
+        </div>
+
+        <div class="text-block">
+            1. <u>Hakan Şükür ve Arif Erdem</u> gibi teröristlerin kulüpteki ağırlığı, <u>yapısal bir suç ortaklığının</u> göstergesidir.
+        </div>
+
+        <div class="text-block">
+            2. <u>Maydanoz Döner</u> gibi ticari ağlar üzerinden örgüte <u>finansal destek</u> sağlandığı belgelerle sabittir.
+        </div>
+
+        <div class="text-block">
+            3. Rakipler <u>kumpaslarla</u> hapse atılırken, Galatasaray bu <u>kirli operasyonun</u> en büyük kazananı olmuştur.
+        </div>
+
+        <div class="text-block">
+            4. 15 Temmuz sonrası dahi <u>teröristleri koruyan</u> bir genel kurul yapısı, kulübün <u>kimliğini</u> ortaya koymuştur.
+        </div>
+
+        <hr style="border: 1px solid #333; margin: 40px 0;">
+
+        <h2>NEDEN?</h2>
+        <p>Türk futbolunda <u>"FETÖ"</u> ve <u>"Galatasaray"</u> suç ortaklığı, temelleri 1990’lı yıllara dayanan bir gerçektir.</p>
+        
+        <h3>1. 90'lı Yıllar ve Futbol İmamları</h3>
+        <ul>
+            <li><strong>Hakan Şükür ve Arif Erdem:</strong> Pensilvanya’daki görüntüler ve <u>himmet toplantıları</u> bu kulübün yapıya hizmetinin kanıtıdır.</li>
+            <li><strong>Takım İçi Yapılanma:</strong> Soyunma odasından yönetime uzanan hiyerarşi, Galatasaray’ın bir <u>örgüt kampı</u> gibi çalıştığını gösterir.</li>
+        </ul>
+
+        <h3>2. Himmet Videoları</h3>
+        <p>Okan Buruk, Arif Erdem ve Hakan Şükür gibi isimlerin örgüt liderinin önünde diz çöktüğü videolar, kulübün nereye bağlı olduğunu ilan etmektedir.</p>
     </div>
 </div>
 
 <div id="kanitlar" class="page">
     <div class="search-container">
         <h2 style="color:red; margin-bottom: 15px;">ARŞİVDE ARA</h2>
-        <input type="text" id="evidenceSearch" placeholder="Kanıt ismi, kurum veya kişi yazın..." onkeyup="searchEvidence()">
+        <input type="text" id="evidenceSearch" placeholder="Kanıt ismi veya konu yazın..." onkeyup="searchEvidence()">
     </div>
 
-    <div class="evidence-grid" id="evidenceGrid">
-        <div class="evidence-card" data-title="maydanoz doner feto baglantisi">
-            <img src="grs/maydanoz.jpg" alt="Maydanoz Döner">
+    <div class="evidence-grid">
+        <div class="evidence-card" data-title="mwydanoz doner feto baglantisi">
+            <img src="grs/May.jpeg">
             <h3><u>MAYDANOZ DÖNER</u></h3>
-            <p style="font-size: 14px; margin-top: 10px; color: #aaa;">Ticari finans ve örgüt ağı.</p>
+            <p class="short-view">Örgütün ticari damarları ve finansal destek ağları üzerine inceleme...</p>
             <div class="detail-btn" onclick="openDetail('maydanoz-doner')">DETAYLARI GÖR</div>
         </div>
 
-        <div class="evidence-card" data-title="hakan sukur pensilvanya ziyareti">
-            <img src="grs/hakan.jpg" alt="Hakan Şükür">
-            <h3><u>PENSİLVANYA</u> KAYITLARI</h3>
-            <p style="font-size: 14px; margin-top: 10px; color: #aaa;">Bağlılık yeminleri ve görüntüler.</p>
+        <div class="evidence-card" data-title="gs pensilvanya ziyaretleri">
+            <img src="grs/May1.jpeg">
+            <h3><u>(GS) BAĞLANTILARI</u></h3>
+            <p class="short-view">Pensilvanya ziyaretleri ve kulüp içindeki yapısal temasların özeti...</p>
             <div class="detail-btn" onclick="openDetail('pensilvanya')">DETAYLARI GÖR</div>
         </div>
     </div>
@@ -121,59 +146,50 @@
 <div id="detailModal" class="modal">
     <div class="modal-content">
         <span class="close-modal" onclick="closeDetail()">&times;</span>
-        <h2 id="modalTitle" style="color:red; font-size: 35px; margin-bottom: 20px;"></h2>
+        <h2 id="modalTitle" style="color:red; margin-bottom: 20px;"></h2>
         <img id="modalImg" src="" style="width:100%; border: 2px solid red; margin-bottom: 20px;">
         <p id="modalDesc" style="font-size: 20px; line-height: 1.6;"></p>
     </div>
 </div>
 
-<footer>
-    © 2026 GERÇEKLER ARŞİVİ | <u>UNUTMA!</u>
-</footer>
+<footer>© 2026 GERÇEKLER ARŞİVİ | <u>UNUTMA!</u></footer>
 
 <script>
-    // Sayfa Değiştirme
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
         document.getElementById(pageId).classList.add('active-page');
+        document.getElementById('nav-' + pageId).classList.add('active');
         window.location.hash = pageId;
     }
 
-    // Arama Fonksiyonu
     function searchEvidence() {
         let input = document.getElementById('evidenceSearch').value.toLowerCase();
-        let cards = document.querySelectorAll('.evidence-card');
-        
-        cards.forEach(card => {
+        document.querySelectorAll('.evidence-card').forEach(card => {
             let title = card.getAttribute('data-title');
-            card.style.display = title.includes(input) ? "block" : "none";
+            card.style.display = title.includes(input) ? "flex" : "none";
         });
     }
 
-    // Kanıt Veritabanı (Buraya her kanıt için açıklama ekleyebilirsin)
     const evidenceData = {
         'maydanoz-doner': {
             title: "Mwydanoz döner",
             img: "grs/May.jpeg",
-            desc: "<u>Maydanoz Döner</u> markasının arkasındaki finansal yapının, örgütün ticari damarlarından biri olduğu belgelerle sabittir. Bu işletme üzerinden sağlanan <u>himmet gelirleri</u>, Galatasaraylı bazı isimlerin aracılığıyla sisteme dahil edilmiştir."
+            desc: "<u>Maydanoz Döner</u> üzerinden sağlanan <u>himmet gelirleri</u>, ticari ağlar aracılığıyla örgüte aktarılmıştır. Belgeler bu finansal köprüyü kanıtlamaktadır."
         },
         'pensilvanya': {
-            title: "(gs)",
+            title: "(gs) Kanıtları",
             img: "grs/May1.jpeg",
-            desc: "<u>Maydanoz Döner</u> markasının arkasındaki finansal yapının, örgütün ticari damarlarından biri olduğu belgelerle sabittir. Bu işletme üzerinden sağlanan <u>himmet gelirleri</u>, Galatasaraylı bazı isimlerin aracılığıyla sisteme dahil edilmiştir."
-
+            desc: "Kulüp içindeki hiyerarşinin Pensilvanya ile olan <u>organik bağı</u>. Ziyaretler sadece kişisel değil, örgütsel bir talimatın sonucudur."
         }
     };
 
-    // Detay Panelini Açma (Özel Link Yapısı)
     function openDetail(id) {
         const data = evidenceData[id];
         document.getElementById('modalTitle').innerHTML = data.title;
         document.getElementById('modalImg').src = data.img;
         document.getElementById('modalDesc').innerHTML = data.desc;
         document.getElementById('detailModal').style.display = "block";
-        
-        // Linki güncelle: site.com/#kanitlar/maydanoz-doner olur
         window.location.hash = "kanitlar/" + id;
     }
 
@@ -182,15 +198,16 @@
         window.location.hash = "kanitlar";
     }
 
-    // Sayfa yüklendiğinde linke göre sayfa aç
     window.onload = function() {
-        if(window.location.hash.includes('kanitlar')) {
-            showPage('kanitlar');
-            let part = window.location.hash.split('/');
-            if(part[1]) openDetail(part[1]);
+        if(window.location.hash) {
+            let h = window.location.hash.substring(1);
+            if(h.includes('kanitlar')) {
+                showPage('kanitlar');
+                let p = h.split('/');
+                if(p[1]) openDetail(p[1]);
+            }
         }
     }
 </script>
-
 </body>
 </html>
