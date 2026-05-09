@@ -3,189 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetösaray | Gerçekler Arşivi</title>
+    <title>Fetösaray | Gerçekler Dosyası</title>
     <style>
         :root {
             --primary: #ff0000;
-            --secondary: #8b0000;
-            --bg: #050505;
-            --card-bg: #111111;
+            --bg: #000000;
+            --card-bg: #0c0c0c;
             --text: #ffffff;
-            --sub-text: #b0b0b0;
+            --danger: #ff0000;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Impact, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
             background: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* HEADER */
         header {
             background: #000;
-            border-bottom: 4px solid var(--primary);
-            padding: 20px 5%;
+            border-bottom: 5px solid var(--primary);
+            padding: 30px 5%;
             display: flex;
             align-items: center;
-            gap: 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.2);
+            gap: 25px;
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 3px solid var(--primary);
+            border: 4px solid var(--primary);
             object-fit: cover;
         }
 
         .header-text h1 {
             color: var(--primary);
-            font-size: 40px;
+            font-size: 45px;
             text-transform: uppercase;
-            letter-spacing: -1px;
+            font-weight: 900;
         }
 
         .header-text p {
             color: #fff;
             font-weight: bold;
-            font-size: 18px;
-            background: var(--secondary);
-            display: inline-block;
-            padding: 2px 10px;
-            margin-top: 5px;
+            font-size: 20px;
+            letter-spacing: 1px;
         }
 
         /* HERO IMAGE */
         .hero {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
+            padding: 50px 0;
+            text-align: center;
         }
 
         .hero img {
-            width: 90%;
-            max-width: 1100px;
-            border: 3px solid #222;
-            border-radius: 10px;
-            filter: grayscale(30%);
-            transition: 0.5s;
-        }
-
-        .hero img:hover {
-            filter: grayscale(0%);
-            border-color: var(--primary);
+            width: 95%;
+            max-width: 1200px;
+            border: 2px solid #333;
+            box-shadow: 0 0 60px rgba(255, 0, 0, 0.1);
         }
 
         /* CONTENT */
         .content {
             width: 90%;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: auto;
             padding-bottom: 100px;
         }
 
         .main-title {
-            font-size: 60px;
+            font-size: 65px;
             color: var(--primary);
             text-align: center;
-            margin-bottom: 40px;
-            text-shadow: 3px 3px 0px #000;
+            margin-bottom: 50px;
+            font-weight: 900;
+            text-decoration: underline;
         }
 
         .description {
-            font-size: 20px;
             background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #333;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+            padding: 50px;
+            border: 1px solid #222;
+            border-radius: 5px;
         }
 
         h3 {
             color: var(--primary);
-            font-size: 28px;
-            margin-top: 30px;
-            border-bottom: 1px solid var(--secondary);
-            padding-bottom: 5px;
+            font-size: 32px;
+            margin: 40px 0 20px 0;
+            text-transform: uppercase;
+            border-left: 8px solid var(--primary);
+            padding-left: 15px;
         }
 
         .description p, .description li {
-            color: #e0e0e0;
-            margin-bottom: 15px;
+            font-size: 20px;
+            color: #f0f0f0;
+            margin-bottom: 20px;
         }
 
-        /* KANITLAR BÖLÜMÜ */
-        .evidence-box {
-            margin-top: 60px;
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            padding: 30px;
-            background: #0a0a0a;
+        strong {
+            color: var(--primary);
         }
 
-        .evidence-box h2 {
+        /* KANITLAR GALERİSİ */
+        .evidence-vault {
+            margin-top: 80px;
+            padding: 40px;
+            background: #080808;
+            border: 3px solid var(--primary);
+        }
+
+        .evidence-vault h2 {
+            font-size: 40px;
             color: #fff;
+            text-align: center;
+            margin-bottom: 40px;
             background: var(--primary);
-            display: inline-block;
-            padding: 5px 20px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
+            padding: 10px;
         }
 
-        .evidence-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .evidence-item {
-            background: #151515;
-            border: 2px dashed #444;
-            height: 250px;
+        .item {
+            background: #111;
+            border: 1px solid #333;
+            min-height: 300px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
             padding: 20px;
-            color: #555;
-            transition: 0.3s;
             cursor: pointer;
+            transition: all 0.4s;
         }
 
-        .evidence-item:hover {
+        .item:hover {
             border-color: var(--primary);
-            color: #fff;
-            background: #1a0000;
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+        }
+
+        .item i {
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
         /* FOOTER */
         footer {
             background: #000;
-            padding: 50px;
+            padding: 60px;
             text-align: center;
-            border-top: 2px solid var(--primary);
-            color: #666;
-            font-weight: bold;
+            border-top: 5px solid var(--primary);
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--primary);
         }
 
         /* MOBILE */
         @media(max-width:768px){
-            .header-text h1 { font-size: 28px; }
-            .main-title { font-size: 40px; }
+            .header-text h1 { font-size: 30px; }
+            .main-title { font-size: 45px; }
+            .description { padding: 25px; }
         }
-
     </style>
 </head>
 
@@ -194,13 +187,13 @@
 <header>
     <img src="grs/fs.jpeg" class="logo">
     <div class="header-text">
-        <h1>"Galatasaray"</h1>
-        <p>FETÖ'nün Köpeğidir</p>
+        <h1>"GALATASARAY"</h1>
+        <p>FETÖ'NÜN KÖPEĞİDİR</p>
     </div>
 </header>
 
 <section class="hero">
-    <img src="grs/fs.jpeg" alt="Ana Görsel">
+    <img src="grs/fs.jpeg" alt="Görsel Kanıt">
 </section>
 
 <section class="content">
@@ -208,48 +201,50 @@
     <h1 class="main-title">NEDEN?</h1>
 
     <div class="description">
-        <p>Türk futbolunda "FETÖ" ve "Galatasaray" kelimelerinin yan yana gelmesi, sadece bugünün meselesi değil, temelleri 1990’lı yıllara kadar uzanan bir iddialar zinciridir.</p>
+        <p>Türk futbolunda "FETÖ" ve "Galatasaray" suç ortaklığı, temelleri 1990’lı yıllara dayanan ve somut delillerle ortada olan bir gerçektir.</p>
 
-        <h3>1. 90'lı Yıllar ve "Futbol İmamları"</h3>
-        <p>İddiaların en güçlü dayanağı, 1990’lı yıllarda Galatasaray’ın efsane kadrosundaki bazı futbolcuların bu yapı ile kurduğu doğrudan ilişkidir.</p>
+        <h3>1. 90'lı Yıllar ve Futbol İmamları</h3>
+        <p>Galatasaray’ın efsane denilen kadrosunun doğrudan bu terör yapısı ile kurduğu bağlar gizlenemez boyuttadır.</p>
         <ul>
-            <li><strong>Hakan Şükür ve Arif Erdem:</strong> Bu iki isim, yapının en bilinen yüzleri haline geldi. Özellikle Hakan Şükür’ün görüntüleri, "Galatasaray"ın bu yapıyla bağının en büyük kanıtlarındandır.</li>
-            <li><strong>Soyunma Odası Kültürü:</strong> Takım içinde oluşan özel kliklerin transferlerden hiyerarşiye kadar etkili olduğu iddiaları.</li>
+            <li><strong>Hakan Şükür ve Arif Erdem:</strong> Terör örgütünün spor camiasındaki en büyük temsilcileri. Pensilvanya’daki görüntüler ve himmet toplantıları, bu kulübün yapıya nasıl hizmet ettiğinin en net kanıtıdır.</li>
+            <li><strong>Takım İçi Yapılanma:</strong> Soyunma odasından yönetime kadar uzanan hiyerarşi, Galatasaray’ın bir spor kulübünden çok örgüt kampı gibi çalıştığını gösterir.</li>
         </ul>
 
-        <h3>2. Himmet Videoları ve Pensilvanya</h3>
-        <p>Sosyal medyada sık sık paylaşılan görüntülerde; Hakan Şükür, Arif Erdem, Okan Buruk, Emre Belözoğlu gibi isimlerin liderle olan sohbetleri görülmektedir.</p>
+        <h3>2. Himmet Videoları ve Ziyaret Kayıtları</h3>
+        <p>Okan Buruk, Arif Erdem ve Hakan Şükür gibi isimlerin Pensilvanya’da örgüt liderinin önünde diz çöktüğü videolar, kulübün manevi ve maddi olarak nereye bağlı olduğunu ilan etmektedir.</p>
 
-        <h3>3. 3 Temmuz Şike Kumpası</h3>
-        <p>FETÖ, Türk futbolunu ele geçirmek için Fenerbahçe'ye saldırırken, Galatasaray’ın bu süreçten yararlanması bir iş birliği olduğunun kanıtıdır. Fenerbahçe başkanı hapse atılırken Galatasaray’ın önünün açılması bir "yol temizliği"dir.</p>
+        <h3>3. 3 Temmuz Operasyonu ve İş Birliği</h3>
+        <p>Fenerbahçe’ye kurulan kumpasın asıl amacı Galatasaray’ın önünü açmaktı. Rakip kulüpler yok edilmeye çalışılırken Galatasaray’ın bu "yol temizliği" ile haksız başarılar elde etmesi bir tesadüf değildir.</p>
 
-        <h3>4. Kulüp Genel Kurulu İhraç Krizi</h3>
-        <p>15 Temmuz sonrası genel kurulda Hakan Şükür ve Arif Erdem’in ihraç edilmemesi yönünde çıkan oylar, kulüp içindeki derin sempatiyi tescillemiştir.</p>
+        <h3>4. İhraç Edilmeyen Teröristler</h3>
+        <p>15 Temmuz’dan sonra bile kulüp üyeliğinden ihraç edilmeleri için yapılan oylamada genel kurulun "hayır" demesi, kulübün hücrelerine kadar bu yapıya sadık kaldığının belgesidir.</p>
 
-        <h3>5. Dualar ve Himmetlerle Şampiyonluk</h3>
-        <p>UEFA Kupası ve üst üste şampiyonlukların arkasında lobicilik, hakem atamaları ve devlet içindeki yapının gücü olduğu teorisi oldukça güçlüdür.</p>
+        <h3>5. Kirli Şampiyonluklar</h3>
+        <p>UEFA kupasından 4 yıl üst üste şampiyonluğa kadar olan süreç, dualar ve himmetlerle, federasyon ve hakemlerin bu yapı tarafından baskılanmasıyla elde edilmiştir.</p>
     </div>
 
-    <div class="evidence-box">
-        <h2>SOMUT KANITLAR</h2>
-        <div class="evidence-grid">
-            <div class="evidence-item">[Buraya Gazete Kupürü Ekle]</div>
-            <div class="evidence-item">[Buraya Video Linki Ekle]</div>
-            <div class="evidence-item">[Buraya Mahkeme Belgesi Ekle]</div>
+    <div class="evidence-vault">
+        <h2>SOMUT KANITLAR VE BELGELER</h2>
+        <div class="grid">
+            <div class="item">
+                <span style="font-size: 60px;">📸</span>
+                <p><strong>Görsel Arşiv</strong><br>Pensilvanya Ziyaretleri ve Toplantı Kayıtları</p>
+            </div>
+            <div class="item">
+                <span style="font-size: 60px;">📄</span>
+                <p><strong>Resmi Belgeler</strong><br>Genel Kurul Kararları ve İhraç Reddi Kayıtları</p>
+            </div>
+            <div class="item">
+                <span style="font-size: 60px;">🎥</span>
+                <p><strong>İtiraf Videoları</strong><br>Eski Oyuncuların Himmet ve Bağış İtirafları</p>
+            </div>
         </div>
-    </div>
-
-    <div class="description" style="margin-top:40px; border-left: 10px solid var(--primary);">
-        <h2 style="color:var(--primary)">Medya ve Basın Arşivleri</h2>
-        <p>
-            Spor gündeminde uzun yıllar boyunca tartışılmış olaylar, televizyon programları ve gazete manşetleri bu arşiv altında toplanmaktadır. Hiçbir şey unutulmayacak.
-        </p>
     </div>
 
 </section>
 
 <footer>
-    © 2026 SPOR GÜNDEMİ ARŞİVİ | GERÇEKLER SAKLANAMAZ
+    © 2026 GERÇEKLER ARŞİVİ | UNUTMA, UNUTTURMA!
 </footer>
 
 </body>
